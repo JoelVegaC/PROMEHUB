@@ -1,3 +1,5 @@
+package es.promehub;
+
 import jakarta.xml.bind.annotation.*;
 
 // FIELD: JAXB lee los atributos directamente (sin necesitar getters/setters)
@@ -23,7 +25,7 @@ public class Videojuego {
     }
 
     public Videojuego(int id, String titulo, String plataforma, String genero,
-                      double precio, int stock, String codigoProveedor) {
+                    double precio, int stock, String codigoProveedor) {
         this.id = id;
         this.titulo = titulo;
         this.plataforma = plataforma;
