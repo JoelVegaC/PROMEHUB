@@ -19,7 +19,7 @@ public class GestorCSV {
         File fichero = new File(ruta);
 
         if (!fichero.exists()) {
-            System.out.println("ERROR: el fichero '" + ruta + "' no existe.");
+            System.out.println("ERROR: el fichero '" +ruta+ "' no existe.");
             return lista;
         }
 
@@ -32,10 +32,10 @@ public class GestorCSV {
                 numLinea++;
                 if (linea.isBlank()) continue;
 
-                // -1 en split para no perder campos vacíos al final
+                // -1 en split para no perder campos vacios al final
                 String[] c = linea.split(SEPARADOR, -1);
                 if (c.length != 7) {
-                    System.out.println("Línea " + numLinea + " incorrecta: se esperaban 7 campos y hay " + c.length);
+                    System.out.println("Linea " + numLinea + " incorrecta: se esperaban 7 campos y hay " + c.length);
                     erroneos++;
                     continue;
                 }
@@ -48,7 +48,7 @@ public class GestorCSV {
                             c[6].trim()));
                     procesados++;
                 } catch (NumberFormatException e) {
-                    System.out.println("Línea " + numLinea + " ignorada: error de conversión numérica (id, precio o stock).");
+                    System.out.println("Linea " + numLinea + " ignorada: error de conversion numerica (id, precio o stock).");
                     erroneos++;
                 }
             }
@@ -56,7 +56,7 @@ public class GestorCSV {
             System.out.println("ERROR de lectura del CSV: " + e.getMessage());
         }
 
-        System.out.println("Registros válidos: " + procesados + " | Registros erróneos: " + erroneos);
+        System.out.println("Registros validos: " + procesados + " | Registros erróneos: " + erroneos);
         return lista;
     }
 

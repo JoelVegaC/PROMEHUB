@@ -1,10 +1,14 @@
 package es.promehub;
 
-import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Clase contenedora: JAXB necesita una raíz que contenga la lista
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+// Clase contenedora: JAXB necesita una raiz que contenga la lista
 @XmlRootElement(name = "catalogo")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Catalogo {
@@ -21,6 +25,7 @@ public class Catalogo {
         this.videojuegos = videojuegos;
     }
 
+    // Getter de la lista de videojuegos
     public List<Videojuego> getVideojuegos() {
         return videojuegos;
     }

@@ -1,6 +1,11 @@
 package es.promehub;
 
-import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
 
 // FIELD: JAXB lee los atributos directamente (sin necesitar getters/setters)
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -25,7 +30,7 @@ public class Videojuego {
     }
 
     public Videojuego(int id, String titulo, String plataforma, String genero,
-                    double precio, int stock, String codigoProveedor) {
+        double precio, int stock, String codigoProveedor) {
         this.id = id;
         this.titulo = titulo;
         this.plataforma = plataforma;
