@@ -13,7 +13,7 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"titulo", "plataforma", "genero", "precio", "stock"})
 public class Videojuego {
 
-    @XmlAttribute               // sale como <videojuego id="1">
+    @XmlAttribute        // sale como <videojuego id="1">
     private int id;
 
     @XmlElement private String titulo;

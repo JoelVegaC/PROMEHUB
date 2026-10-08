@@ -14,7 +14,6 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 public class Catalogo {
 
     // name = "videojuego": cada elemento de la lista se escribe como <videojuego>
-    // sin wrapper extra alrededor de la lista
     @XmlElement(name = "videojuego")
     private List<Videojuego> videojuegos = new ArrayList<>();
 

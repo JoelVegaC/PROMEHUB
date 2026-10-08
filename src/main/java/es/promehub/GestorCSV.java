@@ -11,13 +11,14 @@ import java.util.List;
 
 public class GestorCSV {
 
-    private static final String SEPARADOR = ";";
+    private static final String SEPARADOR = ",";
 
     // Lectura secuencial: BufferedReader + readLine() hasta null
     public static List<Videojuego> leer(String ruta) {
         List<Videojuego> lista = new ArrayList<>();
-        File fichero = new File(ruta);
+        File fichero = new File(ruta);//ruta del csv
 
+        //Validamos que el fichero exista
         if (!fichero.exists()) {
             System.out.println("ERROR: el fichero '" +ruta+ "' no existe.");
             return lista;
@@ -53,13 +54,14 @@ public class GestorCSV {
                 }
             }
         } catch (IOException e) {
-            System.out.println("ERROR de lectura del CSV: " + e.getMessage());
+            System.out.println("Error al leer el CSV" + e.getMessage());
         }
 
         System.out.println("Registros validos: " + procesados + " | Registros erróneos: " + erroneos);
         return lista;
     }
 
+    //Metodo para 
     public static void escribir(String ruta, List<Videojuego> lista) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ruta))) {
             pw.println("id;titulo;plataforma;genero;precio;stock;codigoProveedor");

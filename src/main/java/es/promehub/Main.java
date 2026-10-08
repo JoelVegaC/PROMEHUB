@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static final String CSV_ENTRADA = "videojuegos.csv";
+    static final String CSV_ENTRADA = "D:/DAM2/Acceso a datos/PromeHub/promehub/src/main/java/es/promehub/videojuegos.csv";
     static final String XML = "catalogo.xml";
     static final String CSV_SALIDA = "catalogo_exportado.csv";
 
