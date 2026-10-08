@@ -15,33 +15,37 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        // Pedimos al usuario que introduzca la ruta de su csv
         System.out.print("Introduce la ruta del archivo videojuegos.csv: ");
         CSV_ENTRADA = sc.nextLine();
         int opcion = -1;
 
         do {
+            // Mostramos el menu
             mostrarMenu();
             try {
                 opcion = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
+                // Validamos que el usuario introduzca un valor correcto
                 System.out.println("Opcion incorrecta: introduce un numero del 0 al 7.");
                 continue;
             }
 
             switch (opcion) {
-                case 1 -> catalogo = GestorCSV.leer(CSV_ENTRADA);
-                case 2 -> mostrarCatalogo();
-                case 3 -> GestorXML.exportar(XML, catalogo);
-                case 4 -> catalogo = GestorXML.importar(XML);
-                case 5 -> GestorCSV.escribir(CSV_SALIDA, catalogo);
-                case 6 -> buscar(sc);
-                case 7 -> infoFicheros();
-                case 0 -> System.out.println("Hasta pronto.");
-                default -> System.out.println("Opcion incorrecta: elige entre 0 y 7.");
+                case 1 -> catalogo = GestorCSV.leer(CSV_ENTRADA); // Cargamos el catalogo desde el csv
+                case 2 -> mostrarCatalogo(); // Mostramos el catalogo
+                case 3 -> GestorXML.exportar(XML, catalogo); // Exportar a xml
+                case 4 -> catalogo = GestorXML.importar(XML); // Cargamos el catalogo desde xml
+                case 5 -> GestorCSV.escribir(CSV_SALIDA, catalogo); // Exportamos  el catalogo a csv
+                case 6 -> buscar(sc); // Metodo de busqueda de un videojuego
+                case 7 -> infoFicheros(); // Mostramos informacion de los ficheros 
+                case 0 -> System.out.println("Hasta pronto."); // Mostramos mensaje de despedida
+                default -> System.out.println("Opcion incorrecta: elige entre 0 y 7."); //Mostramos un mensaje si introduce una opcion no valida
             }
         } while (opcion != 0);
     }
-
+    // Metodo para mostrar el menu
     static void mostrarMenu() {
         System.out.println("\n========================================");
         System.out.println(" PROMEHUB DATA EXCHANGE");
@@ -56,7 +60,7 @@ public class Main {
         System.out.println("0. Salir");
         System.out.print("Opcion: ");
     }
-
+    // Metodo para mostrar el catalogo
     static void mostrarCatalogo() {
         if (catalogo.isEmpty()) {
             System.out.println("El catalogo esta vacio. Carga primero un CSV o un XML.");
@@ -64,12 +68,12 @@ public class Main {
         }
         catalogo.forEach(System.out::println);
     }
-
+    // Metodo para buscar un videojuego
     static void buscar(Scanner sc) {
         System.out.print("Introduce id o titulo (o parte del titulo): ");
         String texto = sc.nextLine().trim();
         boolean encontrado = false;
-
+    
         for (Videojuego v : catalogo) {
             // Coincide si el id es igual o si el titulo contiene el texto (sin mayusculas)
             if (String.valueOf(v.getId()).equals(texto)
@@ -80,7 +84,7 @@ public class Main {
         }
         if (!encontrado) System.out.println("No se ha encontrado ningún videojuego.");
     }
-
+    // Metodo para mostrar informacion de los ficheros
     static void infoFicheros() {
         for (String ruta : new String[]{CSV_ENTRADA, XML, CSV_SALIDA}) {
             File f = new File(ruta);

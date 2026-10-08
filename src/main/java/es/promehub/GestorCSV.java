@@ -13,7 +13,7 @@ public class GestorCSV {
 
     private static final String SEPARADOR = ",";
 
-    // Leectura del csv hasta null
+    // Lectura del CSV hasta llegar al final del fichero
     public static List<Videojuego> leer(String ruta) {
         List<Videojuego> lista = new ArrayList<>();
         File fichero = new File(ruta);//ruta del csv
@@ -61,13 +61,13 @@ public class GestorCSV {
         return lista;
     }
 
-    //Metodo para 
+    // Metodo para escribir la lista de videojuegos en un archivo CSV
     public static void escribir(String ruta, List<Videojuego> lista) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ruta))) {
             pw.println("id,titulo,plataforma,genero,precio,stock,codigoProveedor");
             for (Videojuego v : lista) {
                 // Locale.US para que el decimal sea punto y no coma
-                pw.println(String.format(java.util.Locale.US, "%d;%s;%s;%s;%.2f;%d;%s",
+                pw.println(String.format(java.util.Locale.US, "%d,%s,%s,%s,%.2f,%d,%s",
                         v.getId(), v.getTitulo(), v.getPlataforma(), v.getGenero(),
                         v.getPrecio(), v.getStock(),
                         v.getCodigoProveedor() == null ? "" : v.getCodigoProveedor()));
