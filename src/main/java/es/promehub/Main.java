@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static final String CSV_ENTRADA = "D:/DAM2/Acceso a datos/PromeHub/promehub/src/main/java/es/promehub/videojuegos.csv";
+    static String CSV_ENTRADA;
     static final String XML = "catalogo.xml";
     static final String CSV_SALIDA = "catalogo_exportado.csv";
 
@@ -15,6 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce la ruta del archivo videojuegos.csv: ");
+        CSV_ENTRADA = sc.nextLine();
         int opcion = -1;
 
         do {
