@@ -11,13 +11,14 @@ import java.util.List;
 
 public class GestorCSV {
 
-    private static final String SEPARADOR = ";";
+    private static final String SEPARADOR = ",";
 
-    // Lectura secuencial: BufferedReader + readLine() hasta null
+    // Lectura del CSV hasta llegar al final del fichero
     public static List<Videojuego> leer(String ruta) {
         List<Videojuego> lista = new ArrayList<>();
-        File fichero = new File(ruta);
+        File fichero = new File(ruta);//ruta del csv
 
+        //Validamos que el fichero exista
         if (!fichero.exists()) {
             System.out.println("ERROR: el fichero '" +ruta+ "' no existe.");
             return lista;
@@ -53,19 +54,20 @@ public class GestorCSV {
                 }
             }
         } catch (IOException e) {
-            System.out.println("ERROR de lectura del CSV: " + e.getMessage());
+            System.out.println("Error al leer el CSV" + e.getMessage());
         }
 
         System.out.println("Registros validos: " + procesados + " | Registros erróneos: " + erroneos);
         return lista;
     }
 
+    // Metodo para escribir la lista de videojuegos en un archivo CSV
     public static void escribir(String ruta, List<Videojuego> lista) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ruta))) {
-            pw.println("id;titulo;plataforma;genero;precio;stock;codigoProveedor");
+            pw.println("id,titulo,plataforma,genero,precio,stock,codigoProveedor");
             for (Videojuego v : lista) {
                 // Locale.US para que el decimal sea punto y no coma
-                pw.println(String.format(java.util.Locale.US, "%d;%s;%s;%s;%.2f;%d;%s",
+                pw.println(String.format(java.util.Locale.US, "%d,%s,%s,%s,%.2f,%d,%s",
                         v.getId(), v.getTitulo(), v.getPlataforma(), v.getGenero(),
                         v.getPrecio(), v.getStock(),
                         v.getCodigoProveedor() == null ? "" : v.getCodigoProveedor()));
